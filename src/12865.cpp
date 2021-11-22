@@ -5,40 +5,55 @@ using namespace std;
 
 int main(){
 
-    int N, weight;
+    int N, weightLimit;
 
-    cin>>N>>weight;
+    cin>>N>>weightLimit;
 
-    vector<vector<double>>arr;
+    vector<pair<int, int>>arr;
 
     for(int i{0}; i<N; i++){
 
-        vector<double>tmp;
-
-        double num1;
-        double num2;
+        int num1;
+        int num2;
 
         cin>>num1>>num2;
 
-        tmp.push_back(num2/num1);
-        tmp.push_back(num1);
-        tmp.push_back(num2);
+        pair<int, int>tmp={num1, num2};
 
         arr.push_back(tmp);
     }
 
-    sort(arr.begin(), arr.end());
-    reverse(arr.begin(), arr.end());
+    int answer=0;
 
-    vector<pair<int, int>board;
+    // 무게가 0~weightLimit일 때 가장 가치가 높은 값을 저장하는 벡터
+    vector<int>maxWeight(weightLimit + 1, 0);
+
+    // maxWeight의 값을 변경할 경우 그 쌍을 추가하는 벡터
+    vector<pair<int, int>>board;
+
+    board.push_back({0, 0});
 
     for(int i{0}; i < N; i++){
 
-        for(int j{0}; j < i; j++){
+        int boardSize=board.size();
 
-            
+        for(int j{0}; j < boardSize; j++){
+
+            int weight = arr[i].first + board[j].first;
+            int value= arr[i].second + board[j].second;
+
+            if(weight <= weightLimit && value > maxWeight[weight]){
+
+                maxWeight[weight]=value;
+                board.push_back({weight, value});
+
+                if(value > answer)
+                    answer=value;
+            }
         }
     }
+
+    cout<<answer<<endl;
    
     return 0;
 }
