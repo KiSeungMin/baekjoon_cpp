@@ -24,6 +24,8 @@ int main(){
 
         arr[i]=arr[i] % 1000000;
 
+        cout<<i << " " <<answer<<endl;
+
         //cout<<i<<" : "<<arr[i]<<endl;
     }
 
