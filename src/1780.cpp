@@ -11,7 +11,7 @@ void getAnswer(int rowStart, int colStart, int length);
 
 int main(){
 
-    ios::sync_with_stdio(false);
+    ios_base::sync_with_stdio(false);
     cout.tie(NULL);
     cin.tie(NULL);
 
