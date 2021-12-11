@@ -2,90 +2,48 @@
 #include<vector>
 using namespace std;
 
-// nCk = n-1 C k-1 + n-1 C k 
-
-const long long mod = 1000000007;
+unsigned long long mod = 1000000007;
 
 int main(){
 
     int N, K;
     cin>>N>>K;
 
-    vector<long long>factorial;
+    if(K > N/2)
+        K = N - K;
 
-    factorial.push_back(1);
-    factorial.push_back(1);
+    unsigned long long num1 = 1;
+    unsigned long long num2 = 1;
 
-    for(long long i{2}; i <= N; i++){
+    for(int i{0}; i < K; i++){
 
-        long long result = factorial[i-1] * i;
-        result = result % mod;
-        factorial.push_back(result);
+        num1 = num1 * (N-i);
+
+        if( (K - i > 0) && ( num1 % (K - i)  == 0) ){
+            num1 = num1 / (K - i);
+            num1 = num1 % mod;
+            continue;
+        }
+
+        num2 = num2 * (K - i);
+
+        if( (num2 > 0 ) && (num1 % num2 == 0)){
+            num1 = num1 / num2;
+            num1 = num1 % mod;
+            num2 = 1;
+        }
+
+        num1 = num1 % mod;
+        num2 = num2 % mod;
+
     }
 
-    long long answer = factorial[N] / (((factorial[N-K]) * (factorial[K])) % mod);
+    long long answer = num1;
 
-    cout<<answer<<endl;
+    if(num2 > 0)
+        answer = answer / num2;
+
+    cout<< answer % mod;
     
     return 0;
 }
-
-
-    /*
-    vector<vector<int>>board;
-
-    for(int i{0}; i < N + 1; i++){
-
-        vector<int>tmp;
-
-        if(i == 0){
-            tmp.push_back(0);
-            board.push_back(tmp);
-            continue;
-        }
-
-        else if(i ==1){
-            tmp.push_back(1);
-            tmp.push_back(1);
-            board.push_back(tmp);
-            continue;
-        }
-
-        else{
-
-            for(int j{0}; j <= K; j++){
-
-                if(j == 0)
-                    tmp.push_back(1);
-
-                else if(j==1)
-                    tmp.push_back(i);
-
-                else if(j == i){
-                    tmp.push_back(1);
-                    board.push_back(tmp);
-                    break;
-                }
-
-                else if(j == K){
-                    int result=board[i-1][j-1] + board[i-1][j];
-                    result=result % 1000000007;
-                    tmp.push_back(result);
-                    board.push_back(tmp);
-                    break;
-                }
-
-                else{
-                    int result = board[i-1][j-1] + board[i-1][j];
-                    result=result % 1000000007;
-                    tmp.push_back(result);
-                }
-            }
-        }
-    }
-    cout<<board[N][K]<<endl;
-
-    return 0;
-}
-
-*/
