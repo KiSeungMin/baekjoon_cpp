@@ -1,11 +1,12 @@
 #include<iostream>
 #include<vector>
 #include<queue>
+#include<cmath>
 using namespace std;
 
 // find cycle
 
-bool DFS(queue<int>& node, vector<bool>&recent, vector<bool>&visited, vector<vector<int>>& graph);
+void DFS(queue<int>& node, vector<int>& color, vector<bool>&visited, vector<vector<int>>& graph);
 
 bool answer =true;
 
@@ -35,6 +36,7 @@ int main(){
       graph[num2].push_back(num1);
     }
 
+    vector<int>color(point + 1, -1);
     vector<bool>visited(point + 1, false); 
 
     for(int i{1};i <= point; i++){
@@ -44,13 +46,14 @@ int main(){
         queue<int>node;
         node.push(i);
 
-        vector<bool>recent (point+1, false);
-        recent[i] = true;
+        color[i] = 0;
+        visited[i]=true;
 
-        if(DFS(node, recent, visited, graph) == false){
-          answer = false;
+        DFS(node, color, visited, graph);
+        
+        if(answer == false)
           break;
-        }
+
       }
     }
 
@@ -66,7 +69,7 @@ int main(){
   return 0;
 }
 
-bool DFS(queue<int>& node, vector<bool>&recent, vector<bool>&visited, vector<vector<int>>& graph){
+void DFS(queue<int>& node, vector<int>& color, vector<bool>&visited, vector<vector<int>>& graph){
   
   int size = node.size();
 
@@ -76,28 +79,28 @@ bool DFS(queue<int>& node, vector<bool>&recent, vector<bool>&visited, vector<vec
 
     node.pop();
 
-    recent[front] = false;
-
     for(auto j : graph[front]){
 
       if(visited[j] == true){
-        
-        if(recent[j] == true)
-          return false;
+
+        if(color[j] == color[front]){
+          answer =false;
+          return;
+        }
       }
 
       else if(visited[j] == false){
         node.push(j);
         visited[j] = true;
-        recent[j] = true;
+        color[j] = abs(color[front] -1);
       }
     }
   }
 
   if(node.size() == 0)
-    return true;
+    return;
 
-  DFS(node, recent, visited, graph);
+  DFS(node, color, visited, graph);
 
-  return true;
+  return;
 }

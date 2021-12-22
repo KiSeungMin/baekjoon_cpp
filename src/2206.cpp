@@ -9,7 +9,6 @@ const int maxInt= 2000000000;
 int result = 0;
 int answer = maxInt;
 
-
 void BFS(queue<pair<int, int>>&node, vector<vector<bool>>& visited, vector<vector<bool>>& arr);
 
 int main(){
