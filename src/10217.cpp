@@ -1,5 +1,6 @@
 #include<iostream>
 #include<vector>
+#include<algorithm>
 using namespace std;
 
 int main(){
@@ -9,7 +10,7 @@ int main(){
   cout.tie(NULL);
 
   int T;
-  cin>>T:
+  cin>>T;
 
   int airport, limit, ticket;
 
@@ -17,8 +18,8 @@ int main(){
 
     cin>>airport>>limit>>ticket;
 
-    vector<int>tmp;
-    vector<vector<int>> graph(N + 1, tmp);
+    vector<vector<int>>tmp;
+    vector<vector<vector<int>>>graph(airport + 1, tmp);
 
     for(int i{0}; i < ticket; i++){
 
@@ -27,17 +28,40 @@ int main(){
 
       vector<int>tmp;
       tmp.push_back(end);
-      tmp.push_back(cost);
       tmp.push_back(time);
+      tmp.push_back(cost);
 
       graph[start].push_back(tmp);
     }
 
     vector<pair<int, int>>tmp2;
-    vector<vector<pair<int, int>>>costAndTime(N+1, tmp2);
+    vector<vector<pair<int, int>>>TimeAndCost(airport+1, tmp2);
 
-    costAndTime[1].push_back({0, 0});
+    TimeAndCost[1].push_back({0, 0});
 
+    for(int i{1}; i < airport; i++){
+
+      for(auto j : TimeAndCost[i]){
+
+        for(auto k : graph[i]){
+
+          if(j.second + k[2] <= limit){
+
+            TimeAndCost[k[0]].push_back({j.first + k[1], j.second + k[2]});
+          }
+        }
+      }
+    }
+
+    if(TimeAndCost[airport].size() == 0){
+
+      cout<<"Poor KCM\n";
+      continue;
+    }
+
+    sort(TimeAndCost[airport].begin(), TimeAndCost[airport].end());
+
+    cout<<TimeAndCost[airport][0].first<<"\n";
 
   }
 
