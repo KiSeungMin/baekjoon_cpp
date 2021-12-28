@@ -1,11 +1,16 @@
 #include<iostream>
 #include<vector>
-#include<algorithm>
 using namespace std;
 
-unsigned long long answer = 0;
+vector<vector<unsigned int>> result;
+vector<vector<unsigned int>>sum;
 
-void getAnswer(vector<unsigned long long>& arr);
+unsigned int getAnswer(int start, int end);
+unsigned getMin(unsigned int a, unsigned int b);
+
+// result[a][b] = min(result[a][k] + result[k][b])
+
+// result[a][k] : return result[a][k] + sum[a][k]
 
 int main(){
 
@@ -21,7 +26,7 @@ int main(){
     int N;
     cin>>N;
 
-    vector<unsigned long long>arr;
+    vector<int>arr;
 
     for(int i{0}; i < N; i++){
 
@@ -30,41 +35,70 @@ int main(){
       arr.push_back(num);
     }
 
-    sort(arr.begin(), arr.end());
+    if(N == 1){
+      cout<<0<<"\n";
+      continue;
+    }
 
-    getAnswer(arr);
+    vector<unsigned int>tmp(N, 0);
 
-    cout<<answer<<"\n";
+    for(int i{0}; i < N; i++){
+
+      result.push_back(tmp);
+      sum.push_back(tmp);
+    }
+
+    for(int i{0}; i < N; i++){
+
+      for(int j{i}; j < N; j++){
+
+        sum[i][j] = sum[i][j-1] + arr[j];
+
+        if(j == i) 
+          result[i][i] = arr[i];
+
+        if(j == i + 1)
+          result[i][j] = arr[i] + arr[j];
+      }
+    }
+
+    for(int i{0}; i < N; i++){
+      sum[i][i] = 0;
+    }
+
+    getAnswer(0, N -1);
+
+    cout<<result[0][N-1]<<"\n";
+
+    sum.clear();
+    result.clear();
   }
 
   return 0;
 }
 
-void getAnswer(vector<unsigned long long>& arr){
+unsigned int getAnswer(int start, int end){
 
-  for(int i{0}; i < arr.size(); i++){
-    cout<<arr[i]<<" ";
-  }
+  if(result[start][end] == 0){
 
-  cout<<"\n";
+    unsigned int answer = 4000000000; 
 
-  if(arr.size() == 1)
-    return;
+    for(int i{start};i < end; i++){
 
-  vector<unsigned long long>nextArr;
-
-  for(int i{0}; i < arr.size(); i=i+2){
-
-    if(i == arr.size()-1){
-      nextArr.push_back(arr[i]);
-      continue;
+      answer = getMin(answer, getAnswer(start, i) + getAnswer(i + 1, end));
     }
 
-    answer = answer + arr[i] + arr[i+1];
-    nextArr.push_back(arr[i] + arr[i + 1]);
+    result[start][end] = answer;
   }
 
-  sort(nextArr.begin(), nextArr.end());
-
-  getAnswer(nextArr);
+  return result[start][end] + sum[start][end];
 }
+
+unsigned  getMin(unsigned int a, unsigned int b){
+
+  if(a > b)
+    return b;
+
+  return a;
+}
+
