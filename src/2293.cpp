@@ -3,9 +3,7 @@
 #include<algorithm>
 using namespace std;
 
-int N, goal;
-vector<int>cost;
-vector<int>DP(10001, -1);
+
 
 void getAnswer(int num);
 
@@ -15,7 +13,11 @@ int main(){
   cin.tie(NULL);
   cout.tie(NULL);
 
+  int N, goal;
   cin>>N>>goal;
+
+  vector<int>cost;
+  vector<int>DP(goal + 1, 0);
 
   for(int i{0}; i < N ; i++){
     int num;
@@ -25,37 +27,17 @@ int main(){
 
   sort(cost.begin(), cost.end());
 
-  DP[0] = 0;
+  DP[0] = 1;
 
-  getAnswer(goal);
+  for(int i{0}; i < N; i++){
 
-  for(int i{0}; i <= goal; i++){
-    cout<<DP[i]<<" ";
+    for(int j{cost[i]}; j < DP.size(); j ++){
+
+      DP[j] = DP[j] + DP[j - cost[i]];
+    }
   }
+
+  cout<<DP[goal]<<"\n";
 
   return 0;
-}
-
-void getAnswer(int num){
-
-  if(DP[num] != -1)
-    return;
-
-  int sum = 0;
-
-  for(int i{0}; i < cost.size(); i++){
-
-    if(num - cost[i] >= 0){
-
-      if(DP[num - cost[i]] == -1)
-        getAnswer(num - cost[i]);
-
-      sum = sum + DP[num - cost[i]] + 1;
-    }
-
-    else
-      break;
-  }
-
-  DP[num] = sum;
 }

@@ -1,7 +1,10 @@
 #include<iostream>
 #include<vector>
+#include<queue>
 #include<algorithm>
 using namespace std;
+
+const int INF = 1000000000;
 
 int main(){
 
@@ -12,14 +15,17 @@ int main(){
   int T;
   cin>>T;
 
-  int airport, limit, ticket;
+  int N, limit, ticket;
 
   for(int t{0}; t < T; t++){
 
-    cin>>airport>>limit>>ticket;
+    cin>>N>>limit>>ticket;
 
-    vector<vector<int>>tmp;
-    vector<vector<vector<int>>>graph(airport + 1, tmp);
+    priority_queue<vector<int>, vector<vector<int>>, greater<vector<int>>> que;
+
+    vector<int>tmp;
+    vector<vector<int>>tmp2;
+    vector<vector<int>>graph(tmp2, N + 1);
 
     for(int i{0}; i < ticket; i++){
 
@@ -27,41 +33,56 @@ int main(){
       cin>>start>>end>>cost>>time;
 
       vector<int>tmp;
-      tmp.push_back(end);
       tmp.push_back(time);
+      tmp.push_back(end);
       tmp.push_back(cost);
 
       graph[start].push_back(tmp);
     }
 
-    vector<pair<int, int>>tmp2;
-    vector<vector<pair<int, int>>>TimeAndCost(airport+1, tmp2);
+    vector<int>row(limit + 1, INF);
+    vector<vector<int>>DP(N + 1, row);
 
-    TimeAndCost[1].push_back({0, 0});
+    for(int i{0}; i < DP[1].size(); i++)
+      DP[1][i] = 0;
 
-    for(int i{1}; i < airport; i++){
+    while(!que.empty()){
 
-      for(auto j : TimeAndCost[i]){
+      vector<int>tmp = que.top();
+      que.pop();
 
-        for(auto k : graph[i]){
+      int start = tmp[0];
+      int end = tmp[1];
+      int time = tmp[2];
+      int cost = tmp[3];
 
-          if(j.second + k[2] <= limit){
+      for(int i{0}; i + cost <= limit; i++){
 
-            TimeAndCost[k[0]].push_back({j.first + k[1], j.second + k[2]});
+        if(DP[start][i] + time < DP[end][i + cost]){
+
+          for(int j{i + cost}; j <= limit; j++){
+
+            DP[end][j] = DP[start][i] + time;
           }
         }
       }
     }
 
-    if(TimeAndCost[airport].size() == 0){
+    int answer = INF;
+
+    for(auto j : DP[N]){
+
+      if(j < answer)
+        answer = j;
+    }
+
+    if(answer == INF){
 
       cout<<"Poor KCM\n";
       continue;
     }
 
-    sort(TimeAndCost[airport].begin(), TimeAndCost[airport].end());
-
-    cout<<TimeAndCost[airport][0].first<<"\n";
+    cout<<answer<<"\n";
 
   }
 
