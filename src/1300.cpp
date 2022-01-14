@@ -1,28 +1,33 @@
 #include<iostream>
 #include<vector>
-#include<queue>
 using namespace std;
 
 int main(){
 
-  int N, K;
+  long long N, K;
   cin>>N>>K;
 
-  priority_queue<int, vector<int>, greater<int>> pq;
+  vector<long long>arr;
+  for(long long i{1};i <= N; i++)
+    arr.push_back(i);
 
-  for(int i{1}; i <= N; i++){
+  long long answer = 0;
+  for(long long i{1}; i <= N*N; i++){
 
-    for(int j{1}; j <= N; j++){
+    for(int j{0}; j < arr.size(); j++){
 
-      pq.push(i * j);
+      if(arr[j] > i * i)
+        break;
+
+      if(i % arr[j] == 0 && (i/arr[j]) <= N)
+        answer++;
     }
-  }
 
-  for(int i{K-1}; i > 0; i--){
-    pq.pop();
-  }
-
-  cout<<pq.top()<<"\n";
+    if(answer >= K){
+      cout<<i<<"\n";
+      return 0;
+    }
+  }  
 
   return 0;
 }
