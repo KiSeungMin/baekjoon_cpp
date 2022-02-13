@@ -32,6 +32,7 @@ int main(){
 	cout<<bitSet<<"\n";
 	*/
 
+	/*
 	int bitMask = 1 << 1;
 	for(int i{0}; i < 10; i++){
 
@@ -46,6 +47,9 @@ int main(){
 	cout<<b3<<"\n";
 	int tmp2 = (0 << 3 ) || (1<<3);
 	cout<<tmp2<<"\n";
+	*/
+
+	cout<<pow(2, 16)*16*16<<"\n";
 	
 	return 0;
 }
