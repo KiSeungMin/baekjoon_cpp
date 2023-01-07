@@ -8,12 +8,12 @@ int main(){
 	cin>>hour>>minute;
 	
 	if(minute<45){
-		if(hour==0){
+		if(hour==0)
 			hour=23;
-		}
-		else{
+	
+		else
 			hour=hour-1;
-		}
+		
 		minute+=15;
 	}
 	
