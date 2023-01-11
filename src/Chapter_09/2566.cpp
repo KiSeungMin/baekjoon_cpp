@@ -30,7 +30,6 @@ void getInput(){
 
 
 void printAnswer(){
-
     cout<<max_value<<"\n"<<result_row + 1 << " " << result_col + 1 << "\n";
 }
 

@@ -38,9 +38,7 @@ void getAnswer(){
 
         for(int row{row_start}; row < row_start + 10; row++){
             for(int col{col_start}; col < col_start + 10; col++){
-
-                cout<< col << " " << row <<"\n";
-                
+            
                 if(is_block_checked[row][col] == false){
                     is_block_checked[row][col] = true;
                     answer++;

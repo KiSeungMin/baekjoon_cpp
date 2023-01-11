@@ -13,7 +13,7 @@ bool compare(pair<pair<int, int>, string>& value1, pair<pair<int, int>, string>&
     int age2 = value2.first.first;
     int entry2  = value2.first.second;
 
-    if(age1  == age2)
+    if(age1 == age2)
         return entry1 < entry2;
 
     else

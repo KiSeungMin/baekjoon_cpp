@@ -1,8 +1,7 @@
 #include <iostream>
-#include <cstdio>
 #include <algorithm>
 #include <vector>
-
+#define sync_with_stdio(false)
 using namespace std;
 
 bool compare(pair<int, int>& a, pair<int, int>& b) {
@@ -11,17 +10,22 @@ bool compare(pair<int, int>& a, pair<int, int>& b) {
 }
 
 int main() {
-	int n; 
-	cin >> n;
-	vector<pair<int, int> > v(n);
-	for (int i = 0; i < n; i++) {
-        cin>>v[i].first>>v[i].second;
+	
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    int N;
+	cin>>N;
+
+	vector<pair<int, int> > input_arr(N);
+	for (int i = 0; i < N; i++) {
+        cin>>input_arr[i].first>>input_arr[i].second;
 	}
 
-	sort(v.begin(), v.end(), compare);
+	sort(input_arr.begin(), input_arr.end(), compare);
 
-	for (int i = 0; i < n; i++){
-		cout << v[i].first << ' ' << v[i].second << "\n";
+	for (int i = 0; i < N; i++){
+		cout << input_arr[i].first << " " << input_arr[i].second << "\n";
 	}
 	return 0;
 }

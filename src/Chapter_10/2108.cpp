@@ -2,7 +2,6 @@
 #include<vector>
 #include<algorithm>
 #include<cmath>
-#include<iomanip>
 #define sync_with_stdio(false)
 using namespace std;
 

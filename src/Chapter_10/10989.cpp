@@ -4,15 +4,15 @@ using namespace std;
 
 const int LIMIT = 10001;
 
-int main(void) {
+int main() {
     
     cin.tie(NULL);
     cout.tie(NULL);
 
     int N;
-    int count_num_arr[LIMIT] = { 0, };
     cin >> N;
-
+    int count_num_arr[LIMIT] = { 0, };
+    
     for (int i = 0; i < N; i++) {
 
         int input_num;
@@ -24,4 +24,6 @@ int main(void) {
         for(int j{0}; j < count_num_arr[i]; j++)
             cout<<i<<"\n";
     }
+
+    return 0;
 }
