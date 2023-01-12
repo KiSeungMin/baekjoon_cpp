@@ -1,61 +1,35 @@
 #include<iostream>
 #include<cmath>
-#include<string>
 #define sync_with_stdio(false)
 using namespace std;
 
-string move1(string s){
-	for(size_t i{0}; i<s.length(); i++){
-		if(s[i]=='2'){
-			s[i]='3';
-			continue;
-		}
-		if(s[i]=='3'){
-			s[i]='2';
-			continue;
-		}
-	}
-	return s;
-}
+int answer = 0;
 
-string move2(string s){
-	for(size_t i{0}; i<s.length(); i++){
-		if(s[i]=='1'){
-			s[i]='2';
-			continue;
-		}
-		if(s[i]=='2'){
-			s[i]='1';
-			continue;
-		}
-	}
-	return s;
-}
+void hanoi(int start_num, int end_num, int start_point, int end_point){
 
-string hanoii(int count){
-	if(count==1){
-		return "13";
-	}
-	else{
-		return (move1(hanoii(count-1)) + "13" + move2(hanoii(count-1)));
-	}
+    if(start_num == end_num){
+        cout<<start_point<<" "<<end_point<<"\n";
+        answer++;
+        return;
+    }
+
+    int center_point = 6 - (start_point + end_point);
+
+    hanoi(start_num, end_num - 1, start_point, center_point);
+    hanoi(end_num, end_num, start_point, end_point);
+    hanoi(start_num, end_num - 1, center_point, end_point);
 }
 
 int main(){
-	cin.tie(NULL);
-	cout.tie(NULL);
 
-	int K;
-	
-	cin>>K;
-	
-	cout<<static_cast<unsigned int>(pow(2, K)-1)<<endl;
-	
-	string answer=hanoii(K);
-	
-	for(size_t i{0}; i<answer.length(); i=i+2){
-		cout<<answer[i]<<" "<<answer[i+1]<<"\n";
-	}
-	
-	return 0;
+    cout.tie(NULL);
+
+    int K;
+    cin>>K;
+
+    cout<<pow(2, K) - 1<<"\n";
+
+    hanoi(1, K, 1, 3);
+
+    cout<<answer<<"\n";
 }
