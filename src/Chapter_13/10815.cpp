@@ -1,7 +1,12 @@
 #include<iostream>
 #include<vector>
 #include<algorithm>
+#define sync_with_stdio(false)
 using namespace std;
+
+/*
+    이진 탐색을 이용한 풀이
+*/
 
 int binary_search(vector<int>& arr, int goal_num, int start, int end){
 
@@ -20,6 +25,9 @@ int binary_search(vector<int>& arr, int goal_num, int start, int end){
 }
 
 int main(){
+
+    cin.tie(NULL);
+    cout.tie(NULL);
 
     int N; cin>>N;
 

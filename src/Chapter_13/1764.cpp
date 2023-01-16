@@ -1,6 +1,7 @@
 #include<iostream>
 #include<set>
 #include<vector>
+#include<algorithm>
 #define sync_with_stdio(false)
 using namespace std;
 
@@ -32,6 +33,8 @@ int main(){
             result_arr.push_back(input_str);
         }
     }
+
+    sort(result_arr.begin(), result_arr.end());
 
     cout<<answer<<"\n";
     for(string str : result_arr)

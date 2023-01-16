@@ -15,23 +15,18 @@ int main(){
 
     cin>>N;
 
+    vector<int>tmp(N, 0);
+
     for(int i{0}; i<N; i++){
 
-        vector<int>tmp;
-        for(int j{0}; j<N; j++){
-            
-            int num;
-            cin>>num;
-
-            tmp.push_back(num);
-        }
+        for(int j{0}; j<N; j++)
+            cin>>tmp[j];
 
         score.push_back(tmp);
     }
 
-    vector<int>tmp;
-
-    getTeam(0, tmp);
+    vector<int>team;
+    getTeam(0, team);
 
     cout<<answer<<endl;
 

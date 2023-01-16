@@ -1,3 +1,7 @@
 {
-  "pasteAndIndent.selectAfter": true
+  "pasteAndIndent.selectAfter": true,
+  "files.associations": {
+    "vector": "cpp",
+    "iostream": "cpp"
+  }
 }

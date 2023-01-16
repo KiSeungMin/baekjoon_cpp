@@ -8,13 +8,14 @@ vector<vector<bool>> result;
 
 void recursion(int row_start,int row_end, int col_start, int col_end){
 
-    // cout<<"row from " << row_start << " to " << row_end <<" , col from " << col_start << " to "  << col_end<<"\n"; 
-
+    // 박스 크기가 1이면 재귀함수 종료
     if(row_start == row_end || col_start == col_end)
         return;
 
+    // gap : 현재 박스를 3등분한 크기
     int gap = (row_end - row_start + 1) / 3;
 
+    // 빈칸(false)으로 칠할 행과 열
     int empty_row = row_start + gap;
     int empty_col = col_start + gap;
 
@@ -24,6 +25,7 @@ void recursion(int row_start,int row_end, int col_start, int col_end){
         }
     }
 
+    // 박스를 9등분하여 다음 재귀함수 진행
     for(int i{0}; i <= 2; i++){
         for(int j{0}; j <= 2; j++){
             int next_row = row_start + (gap * i);
