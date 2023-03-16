@@ -39,7 +39,6 @@ void getAnswer(vector<vector<short>>& board, int row, int col){
         answer = board;
         checkEnd = true;
 
-        printAnswer();
         return;
     }
 

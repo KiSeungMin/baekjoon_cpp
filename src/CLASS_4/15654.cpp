@@ -2,6 +2,7 @@
 #include<vector>
 #include<string>
 #include<algorithm>
+#define sync_with_stdio(false)
 using namespace std;
 
 int possible, limit;
@@ -31,6 +32,7 @@ void getAnswer(vector<int>&num_list, vector<bool>&check){
 
 int main(){
 
+    cin.tie(NULL); cout.tie(NULL);
     cin >> possible >> limit;
 
     vector<bool>check;

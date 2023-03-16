@@ -23,6 +23,7 @@ void getInput(){
         cin >> start >> end;
 
         graph[start].push_back(end);
+        graph[end].push_back(start);
     }
 }
 

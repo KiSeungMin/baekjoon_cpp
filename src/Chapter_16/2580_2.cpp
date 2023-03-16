@@ -7,7 +7,7 @@ bool checkEnd = false;
 const int LIMIT = 9;
 vector<vector<short>>answer;
 
-void getAnswer(vector<vector<short>>board, int row, int col);
+void getAnswer(vector<vector<short>>& board, int row, int col);
 void checkBox(vector<vector<short>>&board, vector<bool>& checkPossibleNumbers, int row, int col);
 void checkRow(vector<vector<short>>&board, vector<bool>& checkPossibleNumbers, int row, int col);
 void checkCol(vector<vector<short>>&board, vector<bool>& checkPossibleNumbers, int row, int col);
@@ -33,7 +33,7 @@ int main(){
     return 0;
 }
 
-void getAnswer(vector<vector<short>>board, int row, int col){
+void getAnswer(vector<vector<short>>& board, int row, int col){
 
     if(checkEnd == true)
         return;
@@ -58,15 +58,17 @@ void getAnswer(vector<vector<short>>board, int row, int col){
         checkRow(board, checkPossibleNumbers, row, col);
         checkCol(board, checkPossibleNumbers, row, col);
 
+        vector<vector<short>> boardCopy = board;
+
         for(int i{0}; i < LIMIT; i++){
             if(checkPossibleNumbers[i] == true){
 
-                board[row][col] = i + 1;
+                boardCopy[row][col] = i + 1;
 
                 if(col + 1 == LIMIT)
-                    getAnswer(board, row + 1, 0);
+                    getAnswer(boardCopy, row + 1, 0);
                 else
-                    getAnswer(board, row, col + 1);
+                    getAnswer(boardCopy, row, col + 1);
             }
         }
     }
@@ -78,11 +80,9 @@ void checkBox(vector<vector<short>>&board, vector<bool>& checkPossibleNumbers, i
     int colBox = col / 3;
     colBox = colBox * 3;
 
-    int num = 0;
-
     for(int i{rowBox}; i < rowBox + 3; i++){
         for(int j{colBox}; j < colBox + 3; j++){
-            num = board[i][j];
+            int num = board[i][j];
 
             if(num != 0)
                 checkPossibleNumbers[num - 1] = false;

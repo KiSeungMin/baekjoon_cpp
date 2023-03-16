@@ -28,8 +28,6 @@ int getLogic(int num){
         for(int count_two{0}; count_two * 2 <= num_now; count_two++){
 
             num_now = num_now - (2 * count_two);
-
-            cout<<"get Result of "<<count_three<<", "<<count_two<<", "<<num_now<<"\n";
             result += getResult(count_three, count_two, num_now);
 
             num_now += (2 * count_two);

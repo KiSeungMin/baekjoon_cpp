@@ -10,7 +10,7 @@ int main(){
 
     for(int i{3}; i <= n; i++){
         int nextNum = fibonacci[i - 1] + fibonacci[i - 2];
-        fibonacci.push_back(nextNum);
+        fibonacci.push_back(nextNum % 10007);
     }
 
     cout<<fibonacci[n]<<"\n";

@@ -15,7 +15,6 @@ void getMax(string& str){
 
     if(result < answer){
         answer = result;
-        cout<< str_to_int << " " << result<<"\n";
     }
 
     if(str.length() < 6){

@@ -43,7 +43,6 @@ void getTeam(int num, vector<int>team){
     }
 
     else{
-        
         for(int i{num + 1}; i < N; i++){
             
             if(i >= N)
@@ -51,7 +50,6 @@ void getTeam(int num, vector<int>team){
 
             else
                 getTeam(i, team);
-
         }
     }
 }

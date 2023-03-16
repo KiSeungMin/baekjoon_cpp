@@ -53,12 +53,12 @@ void getAnswer(){
         start = edge[0]; end = edge[1]; distance = edge[2];
 
         if(dist[start] + distance < dist[end]){
-            cout<<"NO\n";
+            cout<<"YES\n";
             return;
         }
     }
 
-    cout<<"YES\n";
+    cout<<"NO\n";
     return;
 }
 

@@ -18,7 +18,7 @@ int getAnswer(int num_start, int num_end, int row_start, int row_end, int col_st
             return getAnswer(num_start, num_start + size - 1, row_start, row_center, col_start, col_center);
         }
         else if(col > col_center){
-            return getAnswer(num_start + size, num_start + size * 2 - 1, col_center + 1, col_end, row_start, row_center);
+            return getAnswer(num_start + size, num_start + size * 2 - 1, row_start, row_center, col_center + 1, col_end);
         }
     }
 
@@ -48,5 +48,5 @@ int getNum(int num, int repeat){
 int main(){
     cin >> N >> row >> col;
     
-    cout<<getAnswer(0, getNum(4, N) - 1, 0, getNum(2, N) - 1, 0, getNum(2, N) - 1);
+    cout<<getAnswer(0, getNum(4, N) - 1, 0, getNum(2, N) - 1, 0, getNum(2, N) - 1)<<"\n";
 }

@@ -26,7 +26,7 @@ int main(){
     int timeNow=0;
     int answer=0;
 
-    for(int i{0}; i < N; i++)렬
+    for(int i{0}; i < N; i++){
 
         if(arr[i].second >= timeNow){
 

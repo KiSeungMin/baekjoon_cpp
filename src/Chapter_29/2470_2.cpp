@@ -30,29 +30,21 @@ void getAnswer(){
 
     while(start < end){
 
-        if(num1 + num2 == 0){
-            answer1 = num1;
-            answer2 = num2;
-            return;
-        }
-
-        else if(abs(num1 + num2) < result){
+        if(abs(num1 + num2) < result){
             result = abs(num1 + num2);
             answer1 = num1;
             answer2 = num2;
-            start++; end--;
         }
 
-        else{
-            if(abs(num1) > abs(num2)){
-                start++;
-            } else if(abs(num1) < abs(num2)){
-                end--;
-            }
+        if(abs(num1) > abs(num2)){
+            start++;
+            num1 = input_arr[start];
+        } else if(abs(num1) < abs(num2)){
+            end--;
+            num2 = input_arr[end];
+        } else{
+            return;
         }
-
-        num1 = input_arr[start];
-        num2 = input_arr[end];
     }
 }
 

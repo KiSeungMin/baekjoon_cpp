@@ -3,8 +3,6 @@
 #define sync_with_stdio(false)
 using namespace std;
 
-vector<int>answers;
-
 int GCD(int a, int b){
 
     if(a % b == 0)
@@ -35,7 +33,7 @@ void getAnswer(int N, int M, int a, int b){
             num1 += N;
     }
 
-    answers.push_back(answer);
+    cout<<answer<<"\n";
 }   
 
 int main(){
@@ -48,10 +46,6 @@ int main(){
         cin >> N >> M >> a >> b;
         getAnswer(N, M, a, b);
     }
-
-    for(auto i : answers){
-        cout<<i<<"\n";
-    }
-
+    
     return 0;
 }

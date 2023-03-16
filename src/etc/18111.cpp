@@ -43,7 +43,7 @@ void getAnswer(int avg){
         }
     }
 
-    if(result < answer){
+    if(result <= answer){
         answer = result;
         answer_avg = avg;
     }

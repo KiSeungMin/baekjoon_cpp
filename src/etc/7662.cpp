@@ -1,85 +1,37 @@
-#include<iostream>
-#include<queue>
-#define sync_with_stdio(false)
+#include <iostream>
+#include <set>
 using namespace std;
-
-void getInput(){
-
-    cin.tie(NULL);
-    priority_queue<int> max_pq;
-    priority_queue<int, vector<int>, greater<int>> min_pq;
-
-    int n; cin >> n;
-    int insertCount = 0;
-    int deleteCount = 0;
-    int max_deleteCount = 0;
-    int min_deleteCount = 0;
-    char operation;
-    int code;
-    for(int i{0}; i < n; i++){
-        cin >> operation;
-        cin >> code;
-
-        if(operation == 'I'){
-            max_pq.push(code);
-            min_pq.push(code);
-            insertCount++;
-        }
-
-        else if(operation == 'D'){
-
-            if(max_pq.empty() && min_pq.empty()){
-                deleteCount = 0;
-                continue;
-            }
-
-            if(code == 1){
-                max_pq.pop();  
-                max_deleteCount++;              
-            } else if(code == -1){
-                min_pq.pop();
-                min_deleteCount++;
-            }
-
-            deleteCount++;
-
-            if(insertCount <= deleteCount){
-                while(!max_pq.empty()){
-                    max_pq.pop();
-                }
-                while(!min_pq.empty()){
-                    min_pq.pop();
-                }
-
-                insertCount = 0;
-                deleteCount = 0;
-                max_deleteCount = 0;
-                min_deleteCount = 0;
-            }
-        }
-    }
-
-    for(int i{0}; i < max_deleteCount; i++){
-        min_pq.pop();
-    }
-
-    for(int i{0}; i < min_deleteCount; i++){
-        max_pq.pop();
-    }
-
-    if(max_pq.empty() && min_pq.empty()){
-        cout<<"EMPTY\n";
-    } else{
-        cout<<max_pq.top() <<" "<<min_pq.top()<<"\n";
-    }
-}
-
 int main(){
-
-    int T; cin >> T;
-    for(int t{0}; t < T; t++){
-        getInput();        
+    ios::sync_with_stdio(false);
+    char c;
+    int T, k, n;
+    cin >> T;
+    while(T--){
+        cin >> k;
+        multiset<int> q; // multiset 오름차순 정렬
+        for (int i = 0; i < k;i++){
+            cin >> c >> n;
+            if(c =='I'){
+                q.insert(n); // 삽입
+            }else if(c == 'D'){
+                if(q.empty()){
+                    continue;
+                }else if(n == 1){ // 최대값 제거시
+                    auto iter = q.end(); // 맨 끝값 +1 
+                    iter--; // 맨 끝값으로 이동
+                    q.erase(iter); // 최대값 삭제
+                }else if(n == -1){
+                    q.erase(q.begin()); // 최소값 삭제
+                }
+            }
+        }
+        if(q.empty()){
+            cout << "EMPTY" << '\n';
+        }else {   
+            auto iter = q.end();
+            iter--;
+            cout << *iter << " " << *q.begin() << '\n';
+        }
     }
-    
     return 0;
 }

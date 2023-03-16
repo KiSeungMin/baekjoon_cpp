@@ -5,6 +5,9 @@ using namespace std;
 
 int main(){
 
+    cin.tie(NULL);
+    cout.tie(NULL);
+
     int N, K;
     cin>>N>>K;
 

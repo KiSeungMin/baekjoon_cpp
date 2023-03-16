@@ -30,7 +30,7 @@ void getInput(){
     }
 
     for(int i{0}; i <= node_cnt; i++){
-        sort(graph[i].begin(), graph[i].end(), greater<>());
+        sort(graph[i].begin(), graph[i].end());
     }
 }
 

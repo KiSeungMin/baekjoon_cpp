@@ -11,6 +11,7 @@ int main(){
     int N, K;
     cin>>N>>K;
 
+    // input
     vector<pair<int, int>>input_arr;
     for(int i{0}; i < N; i++){
         int weight, value;
@@ -20,6 +21,7 @@ int main(){
         input_arr.push_back(input_pair);
     }
 
+    // logic
     int answer = 0;
     vector<int>value_arr(K + 1, 0);
     for(int i{0}; i < N; i++){

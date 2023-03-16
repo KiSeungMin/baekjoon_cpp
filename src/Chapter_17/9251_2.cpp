@@ -28,14 +28,7 @@ int main(){
                 
         }
     }
-
-    for(int i{0}; i <= length1; i++){
-        for(int j{0}; j <= length2; j++){
-            cout<<board[i][j]<<" ";
-        }
-        cout<<"\n";
-    }
-
+    
     cout<<board[length2][length1]<<"\n";
 
     return 0;

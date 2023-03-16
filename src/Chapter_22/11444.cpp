@@ -50,22 +50,6 @@ vector<vector<long long>> getMatrix(vector<vector<long long>>arr1, vector<vector
     answer = getMatrix(answer, tmp);
 
     cout<<answer[0][0];
-    
-    /*
-    vector<vector<long long>> arr;
-
-    vector<vector<long long>>arr1={{1, 2}, {3, 4}};
-    vector<vector<long long>>arr2={{1}, {3}};
-
-    arr=getMatrix(arr1, arr2);
-
-    for(int i{0}; i < arr[0].size(); i++){
-        for(int j{0}; j < arr.size(); j++){
-            cout<<arr[i][j]<<" ";
-        }
-        cout<<"\n";
-    }
-    */
 
      return 0;
  }

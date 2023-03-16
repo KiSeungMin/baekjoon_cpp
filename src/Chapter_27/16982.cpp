@@ -60,6 +60,6 @@ void BFS(int count, queue<int> q){
 int main(){
     getInput();
 
-    queue<int>q; q.push(0);
+    queue<int>q; q.push(1);
     BFS(1, q);
 }

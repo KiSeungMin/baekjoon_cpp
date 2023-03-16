@@ -25,17 +25,6 @@ int main(){
     getIncrease(input_arr, increase_arr);
     getDecrease(input_arr, decrease_arr);
 
-    for(int i{0}; i < N; i++){
-        cout<<increase_arr[i]<<" ";
-    }
-
-    cout<<"\n";
-
-    for(int i{0}; i < N; i++){
-        cout<<decrease_arr[i]<<" ";
-    }
-    cout<<"\n";
-
     int answer = 0;
     for(int i{0}; i < N; i++){
 

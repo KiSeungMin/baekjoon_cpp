@@ -3,7 +3,7 @@
 using namespace std;
 
 const int LIMIT = 8;
- 
+
 int main(){
 
     vector<int>input_arr(LIMIT, 0);

@@ -16,8 +16,7 @@ int main(){
     vector<int>alphabet_count(alphabet_limit, 0);
 
     vector<int>tmp_arr(limit, 0);
-    vector<vector<int>>board(alphabet_limit, tmp_arr);
-
+    vector<vector<int>>board(alphabet_limit, tmp_arr);      
 
     for(int i{0}; i < limit; i++){
         char s = input_str[i];
@@ -36,6 +35,7 @@ int main(){
 
             board[index][i] = count;
 
+            // 현재 인덱스보다 작은 값들에 대해 현재 값 - 1 대입
             int j = i - 1;
             while(board[index][j] == 0){
                 board[index][j] = count - 1;
@@ -54,13 +54,6 @@ int main(){
             board[i][j] = count;
             j--;
         }
-    }
-
-    for(int i{0}; i < alphabet_limit; i++){
-        for(int j{0}; j < limit; j++){
-            cout<<board[i][j]<<" ";
-        }
-        cout<<"\n";
     }
 
     int M; cin>>M;

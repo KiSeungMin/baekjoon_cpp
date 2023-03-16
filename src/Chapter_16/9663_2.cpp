@@ -8,18 +8,11 @@ int answer=0;
 void getAnswer(int row, int col, vector<int> result);
 
 
-// 각 행에 무조건 체스 말이 하나가 온다는 것을 이용한 풀이
+// 각 행에 무조건 체스 말이 하나가 온다
 
 int main(){
 
 	cin>>N;
-	
-	/*
-	if(N==14){
-		cout<<365596<<endl;
-		return 0;
-	}
-	*/
 	
 	for(int i{0}; i<=(N/2)-1; i++){
 		vector<int>tmp(N, 0);

@@ -52,6 +52,8 @@ void getParent(queue<int>& q){
 }
 
 void printParent(){
+
+    cout.tie(NULL);
     for(int i{2}; i <= node_cnt; i++){
         cout<<parent[i]<<"\n";
     }

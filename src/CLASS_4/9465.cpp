@@ -1,5 +1,6 @@
 #include<iostream>
 #include<vector>
+#define sync_with_stdio(false)
 using namespace std;
 
 int getMax(int a, int b, int c){
@@ -64,6 +65,8 @@ void getInput(){
 }
 
 int main(){
+    
+    cin.tie(NULL); cout.tie(NULL);
 
     int T; cin >> T;
     for(int t{0}; t < T; t++){
