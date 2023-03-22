@@ -3,10 +3,10 @@ using namespace std;
 
 int main(){
 
-    int arr[5] = {1,2,3,4,5};
-
-    for(auto i : arr){
-        cout<<i<<" ";
+    int result = 1;
+    for(int i{0}; i < 20; i++){
+        result *= 2;
     }
-    return 0;
+
+    cout<<result<<endl;
 }
