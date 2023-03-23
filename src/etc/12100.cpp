@@ -18,9 +18,6 @@ void goLeft(int level, vector<vector<long long>>board){
                 continue;
             }
 
-            if(value > answer)
-                answer = value;
-
             int nextIndex = j - 1;
             while(nextIndex > limit && board[i][nextIndex] == 0){
                 nextIndex--;
@@ -61,9 +58,6 @@ void goRight(int level, vector<vector<long long>>board){
             if(value == 0){
                 continue;
             }
-
-            if(value > answer)
-                answer = value;
 
             int nextIndex = j + 1;
             while(nextIndex < limit && board[i][nextIndex] == 0){
@@ -107,9 +101,6 @@ void goUp(int level, vector<vector<long long>>board){
                 continue;
             }
 
-            if(value > answer)
-                answer = value;
-
             int nextIndex = i - 1;
             while(nextIndex > limit && board[nextIndex][j] == 0){
                 nextIndex--;
@@ -150,9 +141,6 @@ void goDown(int level, vector<vector<long long>>board){
             if(value == 0){
                 continue;
             }
-
-            if(value > answer)
-                answer = value;
 
             int nextIndex = i + 1;
             while(nextIndex < limit && board[nextIndex][j] == 0){
@@ -204,6 +192,9 @@ int main(){
 
         for(int j{0}; j < N; j++){
             long long num; cin >> num;
+
+            if(num > answer)
+                answer = num;
             tmp.push_back(num);
         }
         board.push_back(tmp);
