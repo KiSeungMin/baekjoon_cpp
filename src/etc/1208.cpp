@@ -4,7 +4,7 @@ using namespace std;
 
 const int center = 4000000;
 const int limit = 8000001;
-vector<int>board(limit, 0);
+vector<long long>board(limit, 0);
 
 int main(){
 

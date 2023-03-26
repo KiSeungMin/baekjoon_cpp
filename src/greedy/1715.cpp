@@ -18,10 +18,6 @@ int main(){
     int answer = 0;
     int num1 ,num2, result;
 
-    if(N == 1){
-        answer = q.top() * -1;
-    }
-
     while(true){
 
         if(q.size() <= 1){

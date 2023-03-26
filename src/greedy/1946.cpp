@@ -6,6 +6,8 @@ using namespace std;
 
 int getAnswer(){
 
+    cin.tie(NULL); 
+
     int N; cin >> N;
     vector<pair<int, int>> arr = {{0, 0}};
 
@@ -36,10 +38,9 @@ int getAnswer(){
 
 int main(){
 
-    cin.tie(NULL); cout.tie(NULL);
+    cout.tie(NULL);
     int T; cin >> T;
     for(int t{0}; t < T; t++){
-
         cout<<getAnswer()<<"\n";
     }
 

@@ -1,5 +1,6 @@
 #include<iostream>
 #include<vector>
+#define sync_with_stdio(false)
 using namespace std;
 
 int N;
@@ -13,7 +14,7 @@ void getAnswer(int len){
         for(auto num : result){
             cout<<num<<" ";
         }
-        cout<<endl;
+        cout<<"\n";
 
         return;
     }
@@ -33,6 +34,8 @@ void getAnswer(int len){
 }
 
 int main(){
+
+    cin.tie(NULL); cout.tie(NULL);
 
     cin >> N;
     for(int i{1}; i <= N; i++){
